@@ -1,0 +1,82 @@
+syntax = "proto3";
+
+import "lib/np_library.proto";
+import "lib/kwargs_expression.proto";
+import "google/protobuf/any.proto";
+
+// The machine Learning service definition with Neighbors function.
+service NeighborsService {
+
+	// Send a Nearest Neighbors
+	rpc NearestNeighborsEvent(NearestNeighborsRequest) returns (NearestNeighborsReply) {}
+
+	// Send a KD Tree
+	rpc KDTreeEvent(KDTreeRequest) returns (KDTreeReply) {}
+
+	// Send a Nearest Centroid
+	rpc NearestCentroidEvent(NearestCentroidRequest) returns (NearestCentroidReply) {}
+
+}
+
+// The request message containing the Nearest Neighbors's Data.
+message NearestNeighborsRequest {
+	google.protobuf.Any x_drop_data = 1;
+	google.protobuf.Any size = 2;
+    google.protobuf.Any random = 3;
+	string key = 4;
+	optional google.protobuf.Any y_drop_data = 5;
+	NearestNeighborskwargs kwargs = 6;
+}
+
+// The response message containing the Nearest Neighbors.
+message NearestNeighborsReply {
+	optional int32 n_samples_fit_ = 1;
+	optional NDArray feature_names_in_ = 2;
+	optional int32 n_features_in_ = 3;
+	optional google.protobuf.Any effective_metric_params_ = 4;
+	optional string effective_metric_ = 5;
+}
+
+// The response message containing the KD Tree's Data.
+message KDTreeRequest {
+	google.protobuf.Any x_drop_data = 1;
+	google.protobuf.Any size = 2;
+    google.protobuf.Any random = 3;
+	string key = 4;
+	optional google.protobuf.Any y_drop_data = 5;
+	optional google.protobuf.Any sample_weight = 6;
+	optional uint32 k = 7;
+	oneof instrument {
+		int32 leaf_size = 8;
+		string metric = 9;
+		bool returns_distance = 10;
+		bool dualtree = 11;
+		bool breadth_first = 12;
+		bool sort_results = 13;
+		google.protobuf.Any kwargs = 14;
+	}
+}
+
+// The response message containing the KD Tree.
+message KDTreeReply {
+	optional google.protobuf.Any matrix = 1;
+}
+
+// The request message containing the Nearest Centroid 's Data.
+message NearestCentroidRequest {
+	google.protobuf.Any x_drop_data = 1;
+    google.protobuf.Any y_drop_data = 2;
+	google.protobuf.Any size = 3;
+    google.protobuf.Any random = 4;
+	string key = 5;
+	optional google.protobuf.Any metric = 6;
+	optional float shrink_threshold = 7;
+}
+
+// The response message containing the Nearest Centroid.
+message NearestCentroidReply {
+	optional NDArray feature_names_in_ = 1;
+	optional int32 n_features_in_ = 2;
+	optional NDArray classes_ = 3;
+	optional NDArray centroids_ = 4;
+}

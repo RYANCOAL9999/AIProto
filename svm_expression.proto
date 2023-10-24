@@ -1,0 +1,90 @@
+syntax = "proto3";
+
+import "lib/np_library.proto";
+import "lib/kwargs_expression.proto";
+import "google/protobuf/any.proto";
+
+// The machine Learning service definition with SVM function.
+service SVMService {
+
+    // Send a Linear SVC
+    rpc LinearSVCEvent(LinearSVCRequest) returns (LinearSVCReply) {}
+
+    // Send a Linear SVR
+    rpc LinearSVREvent (LinearSVRRequest) returns (LinearSVRReply) {}
+
+    // Send a SVC
+    rpc SVCEvent (SVCRequest) returns (SVCReply) {}
+
+}
+
+// The request message containing the Linear SVC's Data.
+message LinearSVCRequest {
+    google.protobuf.Any x_drop_data = 1;
+    google.protobuf.Any y_drop_data = 2;
+    google.protobuf.Any size = 3;
+    google.protobuf.Any random = 4;
+    string key = 5;
+    optional google.protobuf.Any sample_weight = 6;
+    LinearSVCkwargs kwargs = 7;
+}
+
+// The response message containing the Linear SVC.
+message LinearSVCReply {
+    optional int32 n_iter_ = 1;
+    optional NDArray feature_names_in_ = 2;
+    optional int32 n_features_in_ = 3;
+    optional NDArray classes_ = 4;
+    optional google.protobuf.Any intercept_ = 5;
+    optional NDArray coef_ = 6;
+}
+
+// The request message containing the Linear SVR's Data.
+message LinearSVRRequest {
+    google.protobuf.Any x_drop_data = 1;
+    google.protobuf.Any y_drop_data = 2;
+    google.protobuf.Any size = 3;
+    google.protobuf.Any random = 4;
+    string key = 5;
+    optional google.protobuf.Any sample_weight = 6;
+    LinearSVRkwargs kwargs = 7;
+}
+
+// The response message containing the Linear SVR's Data.
+message LinearSVRReply {
+    optional int32 n_iter_ = 1;
+    optional NDArray feature_names_in_ = 2;
+    optional int32 n_features_in_ = 3;
+    optional NDArray intercept_ = 4;
+    optional NDArray coef_ = 5;
+}
+
+// The request message containing the SVC's Data.
+message SVCRequest {
+    google.protobuf.Any x_drop_data = 1;
+    google.protobuf.Any y_drop_data = 2;
+    google.protobuf.Any size = 3;
+    google.protobuf.Any random = 4;
+    string key = 5;
+    optional google.protobuf.Any sample_weight = 6;
+    SVCkwargs kwargs = 7;
+}
+
+// The response message containing the SVC.
+message SVCReply {
+    optional google.protobuf.Any shape_fit_ = 1;
+    optional NDArray probB_ = 2;
+    optional NDArray probA_ = 3;
+    optional NDArray n_support_ = 4;
+    optional NDArray support_vectors_ = 5;
+    optional NDArray support_ = 6;
+    optional NDArray n_iter_ = 7;
+    optional NDArray feature_names_in_ = 8;
+    optional int32 n_features_in_ = 9;
+    optional NDArray intercept_ = 10;
+    optional int32 fit_status_ = 11;
+    optional NDArray dual_coef_ = 12;
+    optional NDArray coef_ = 13;
+    optional NDArray classes_ = 14;
+    optional NDArray class_weight_ = 15;
+}

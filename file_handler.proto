@@ -1,0 +1,27 @@
+syntax = "proto3";
+
+// The machine Learning service definition with file function.
+service FileService {
+
+    // Sends a S3 URL String
+    rpc FileUploadEvent(FileUploadRequest) returns (FileEventReply) {}
+
+    // Delete a pd file with manager's data.
+    rpc FileDelete(FileDeleteRequest) returns (FileEventReply) {}
+
+}
+
+// The repsone message containing the file Event.
+message FileEventReply {
+    bool access = 1;
+}
+
+// The request message containing the file upload's Data.
+message FileUploadRequest {
+    string url = 1;
+}
+
+// The request message containing the file upload's Data.
+message FileDeleteRequest {
+    optional string fileName = 1;
+}

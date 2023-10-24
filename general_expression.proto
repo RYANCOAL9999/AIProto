@@ -1,0 +1,46 @@
+syntax = "proto3";
+
+import "google/protobuf/any.proto";
+
+// The machine Learning service definition with general function.
+service GeneralService {
+
+    // Sends a Header
+    rpc HeaderEvent (HeaderRequest) returns (DataFrame) {}
+
+    // Send a Info
+    rpc InfoEvent (InfoRequest) returns (DataFrame) {}
+
+    // send a Describler
+    rpc DescriblerEvent (DescribeRequest) returns (DataFrame) {}
+
+}
+
+//The response for header and describe.
+message DataFrame {
+    optional google.protobuf.Any data = 1;
+}
+
+// The request message containing the header's Data.
+message HeaderRequest {
+
+}
+
+// The request message containing the info's Data.
+message InfoRequest {
+
+}
+
+// The request message containing the describe's Data.
+message DescribeRequest {
+
+}
+
+
+
+
+
+
+
+
+

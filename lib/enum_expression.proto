@@ -1,0 +1,68 @@
+syntax = "proto3";
+
+// Penalty kwargs with enum type.
+enum Penalty {
+    PENALTY_L2 = 0;
+    PENALTY_L1 = 1;
+    PENALTY_ELASTICNET = 2;
+}
+
+// Loss kwargs with enum type.
+enum Loss {
+    LOSS_HINGE = 0;
+    LOSS_LOG_LOSS = 1;
+    LOSS_LOG = 2;
+    LOSS_MODIFIED_HUBER = 3;
+    LOSS_SQUARED_HINGE = 4;
+    LOSS_PERCEPTRON = 5;
+    LOSS_SQUARED_ERROR = 6;
+    LOSS_HUBER = 7;
+    LOSS_EPSILON_INSENSITIVE = 8;
+    LOSS_SQUARED_EPSILON_INSENSITIVE = 9;
+}
+
+// Multi_Class kwargs with enum type.
+enum Multi_Class {
+    MULTI_CLASS_OVR = 0;
+    MULTI_CLASS_CRAMMER_SINGER = 1;
+}
+
+// Order kwargs with enum type.
+enum Order {
+    ORDER_C = 0;
+    ORDER_F = 1;
+}
+
+//Solver kwargs with enum type.
+enum Solver {
+    SOLVER_AUTO = 0;
+    SOLVER_SVD = 1;
+    SOLVER_CHOLESKY = 2;
+    SOLVER_LSQR = 3;
+    SOLVER_SPARSE_CG = 4;
+    SOLVER_SAG = 5;
+    SOLVER_SAGA = 6;
+    SOLVER_LBFGS = 7;
+    SOLVER_NEWTON_CHOLESKY = 8;
+}
+
+// Selection kwargs with enum type.
+enum Selection {
+    SELECTION_CYCLIC = 0;
+    SELECTION_RANDOM = 1;
+}
+
+// Algorithm kwargs with enum type.
+enum Algorithm {
+    ALGORITHM_AUTO = 0;
+    ALGORITHM_BALL_TREE = 1;
+    ALGORITHM_KD_TREE = 2;
+    ALGORITHM_BRUTE = 3;
+}
+
+// Link kwargs with enum type.
+enum Link {
+    LINK_AUTO = 0;
+    LINK_LOG = 1;
+    LINK_IDENTITY = 2;
+}

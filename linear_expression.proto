@@ -1,0 +1,241 @@
+syntax = "proto3";
+
+import "lib/np_library.proto";
+import "lib/kwargs_expression.proto";
+import "google/protobuf/any.proto";
+
+// The machine Learning service definition with linear_model function.
+service LinearService {
+
+    // Sends a Linear Regression
+    rpc LinearRegressionEvent(LinearRegressionRequest) returns (LinearRegressionReply) {}
+
+    // Sends a Ridge
+    rpc LinearRidgeEvent(LinearRidgeRequest) returns (LinearRidgeReply) {}
+
+    // Sends a Ridge CV
+    rpc LinearRidgeCVEvent(LinearRidgeCVRequest) returns (LinearRidgeCVReply) {}
+
+    // Sends a Lasso
+    rpc LassoExpressionEvent(LassoExpressionRequest) returns (LassoExpressionReply) {}
+
+    // Send a LassoLars
+    rpc LassoLarsLassoExpressionEvent(LassoLarsLassoExpressionRequest) returns (LassoLarsLassoExpressionReply) {}
+
+    // Send a Bayesian Ridge
+    rpc BayesianRidgeEvent(BayesianRidgeRequest) returns (BayesianRidgeReply) {}
+
+    // Send a Tweedie Regressor
+    rpc TweedieRegressorEvent(TweedieRegressorRequest) returns (TweedieRegressorReply) {}
+
+    // Send a SGD Classifier
+    rpc SGDClassifierEvent(SGDClassifierRequest) returns (SGDClassifierReply) {}
+    
+    // Send a Elastic Net
+    rpc ElasticNetEvent(ElasticNetRequest) returns (ElasticNetReply) {}
+
+}
+
+// The request message containing the Linear Regression's Data.
+message LinearRegressionRequest {
+	google.protobuf.Any x_drop_data = 1;
+    google.protobuf.Any y_drop_data = 2;
+    google.protobuf.Any size = 3;
+    google.protobuf.Any random = 4;
+    string key = 5;
+    optional google.protobuf.Any sample_weight = 7;
+    LinearRegressionkwargs kwargs = 8;
+}
+
+// The response message containing the Linear Regression.
+message LinearRegressionReply {
+    optional NDArray feature_names_in_ = 1;
+    optional int32 n_features_in_ = 2;
+    optional google.protobuf.Any intercept_ = 3;
+    optional google.protobuf.Any singular_ = 4;
+    optional int32 rank_ = 5;
+    optional NDArray coef_ = 6;
+    optional float socre = 7;
+    optional NDArray predict = 8;
+    optional float meanAbsoluteError = 9;
+}
+
+// The request message containing the Ridge's Data.
+message LinearRidgeRequest {
+	google.protobuf.Any alpha = 1;
+	google.protobuf.Any x_drop_data = 2;
+    google.protobuf.Any y_drop_data = 3;
+    google.protobuf.Any size = 4;
+    google.protobuf.Any random = 5;
+    string key = 6;
+    optional google.protobuf.Any sample_weight = 7;
+    LinearRidgekwargs kwargs = 8;
+}
+
+// The response message containing the Ridge.
+message LinearRidgeReply {
+    optional NDArray feature_names_in_ = 1;
+    optional int32 n_features_in_ = 2;
+    optional google.protobuf.Any n_iter_ = 3;
+    optional google.protobuf.Any intercept_ = 4;
+    optional NDArray coef_ = 5;
+}
+
+// The request message containing the Ridge CV's Data.
+message LinearRidgeCVRequest {
+    google.protobuf.Any alpha = 1;
+    google.protobuf.Any x_drop_data = 2;
+    google.protobuf.Any y_drop_data = 3;
+    google.protobuf.Any size = 4;
+    google.protobuf.Any random = 5;
+    string key = 6;
+    optional google.protobuf.Any sample_weight = 7;
+    LinearRidgeCVkwargs kwargs = 8;
+}
+
+// The response message containing the Ridge CV.
+message LinearRidgeCVReply {
+    optional NDArray feature_names_in_ = 1;
+    optional int32 n_features_in_ = 2;
+    optional google.protobuf.Any best_score_ = 3;
+    optional google.protobuf.Any alpha = 4;
+    optional google.protobuf.Any intercept_ = 5;
+    optional NDArray coef_ = 6;
+    optional NDArray cv_values_ = 7;
+}
+
+// The request message containing the Lasso's Data.
+message LassoExpressionRequest {
+    float alpha = 1;
+    google.protobuf.Any x_drop_data = 2;
+    google.protobuf.Any y_drop_data = 3;
+    google.protobuf.Any size = 4;
+    google.protobuf.Any random = 5;
+    string key = 6;
+    optional google.protobuf.Any sample_weight = 7;
+    LassoExpressionkwargs kwargs = 8;
+}
+
+// The response message containing the Lasso.
+message LassoExpressionReply {
+    optional NDArray feature_names_in_ = 1;
+    optional int32 n_features_in_ = 2;
+    optional google.protobuf.Any n_iter_ = 3;
+    optional google.protobuf.Any intercept_ = 4;
+    optional google.protobuf.Any sparse_coef_ = 5;
+    optional google.protobuf.Any dual_gap_ = 6;
+    optional NDArray coef_ = 7;
+}
+
+// The request message containing the Lasso Lars's Data.
+message LassoLarsLassoExpressionRequest {
+    float alpha = 1;
+    google.protobuf.Any x_drop_data = 2;
+    google.protobuf.Any y_drop_data = 3;
+    google.protobuf.Any size = 4;
+    google.protobuf.Any random = 5;
+    string key = 6;
+    optional google.protobuf.Any sample_weight = 7;
+    LassoLarsLassoExpressionkwargs kwargs = 8;
+}
+
+// The response message containing the Lasso Lars.
+message LassoLarsLassoExpressionReply {
+    optional NDArray feature_names_in_ = 1;
+    optional int32 n_features_in_ = 2;
+    optional google.protobuf.Any n_iter_ = 3;
+    optional NDArray coef_ = 4;
+    optional google.protobuf.Any coef_path_ = 5;
+    optional google.protobuf.Any active_ = 6;
+    optional google.protobuf.Any alphas_ = 7;
+}
+
+// The request message containing the Bayesian Ridge's Data.
+message BayesianRidgeRequest {
+    google.protobuf.Any x_drop_data = 1;
+    google.protobuf.Any y_drop_data = 2;
+    google.protobuf.Any size = 3;
+    google.protobuf.Any random = 4;
+    string key = 5;
+    optional google.protobuf.Any sample_weight = 6;
+    BayesianRidgekwargs kwargs = 7;
+}
+
+// The response message containing the Bayesian Ridge.
+message BayesianRidgeReply {
+    optional NDArray feature_names_in_ = 1;
+    optional int32 n_features_in_ = 2;
+    optional NDArray x_scale_ = 3;
+    optional NDArray x_offset_ = 4;
+    optional int32 n_iter_ = 5;
+    optional google.protobuf.Any score_ = 6;
+    optional google.protobuf.Any simga_ = 7;
+    optional float lambda_ = 8;
+    optional float alpha_ = 9;
+    optional float intercept_ = 10;
+    optional NDArray coef_ = 11;
+}
+
+// The request message containing the Tweedie Regressor's Data.
+message TweedieRegressorRequest {
+    google.protobuf.Any x_drop_data = 1;
+    google.protobuf.Any y_drop_data = 2;
+    google.protobuf.Any size = 3;
+    google.protobuf.Any random = 4;
+    string key = 5;
+    optional google.protobuf.Any sample_weight = 6;
+    TweedieRegressorkwargs kwargs = 7;   
+}
+
+// The response message containing the Tweedie Regressor.
+message TweedieRegressorReply {
+    optional NDArray feature_names_in_ = 1;
+    optional int32 n_features_in_ = 2;
+    optional int32 n_iter_ = 3;
+    optional float intercept_ = 4;
+    optional NDArray coef_ = 5;
+}
+
+// The request message containing the SGD Classifier's Data.
+message SGDClassifierRequest {
+    google.protobuf.Any x_drop_data = 1;
+    google.protobuf.Any y_drop_data = 2;
+    google.protobuf.Any size = 3;
+    google.protobuf.Any random = 4;
+    string key = 5;
+    optional google.protobuf.Any sample_weight = 6;
+    SGDClassifierkwargs kwargs = 7;
+}
+
+// The response message containing the SGD Classifier.
+message SGDClassifierReply {
+    optional NDArray feature_names_in_ = 1;
+    optional int32 n_features_in_ = 2;
+    optional int32 t_ = 3;
+    optional NDArray classes_ = 4;
+    optional google.protobuf.Any loss_function_ = 5;
+    optional NDArray intercept_ = 6;
+    optional NDArray coef_ = 7;
+}
+
+// The request message containing the Elastic Net's Data.
+message ElasticNetRequest {
+    float alpha = 1;
+    google.protobuf.Any x_drop_data = 2;
+    google.protobuf.Any y_drop_data = 3;
+    google.protobuf.Any size = 4;
+    google.protobuf.Any random = 5;
+    string key = 6;
+    optional google.protobuf.Any sample_weight = 7;
+    ElasticNetkwargs kwargs = 8;
+}
+
+// The response message containing the Elastic Net.
+message ElasticNetReply {
+    NDArray feature_names_in_ = 1;
+    int32 n_features_in_ = 2;
+    google.protobuf.Any dual_gap_ = 3;
+    repeated int32 n_iter_ = 4;
+    google.protobuf.Any intercept_ = 5;
+    NDArray coef_ = 6;
+}

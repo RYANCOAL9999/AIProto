@@ -1,0 +1,211 @@
+syntax = "proto3";
+
+import "lib/enum_expression.proto";
+import "lib/np_library.proto";
+import "google/protobuf/any.proto";
+
+// Linear Regression kwargs with optional type.
+message LinearRegressionkwargs {
+    optional bool fit_intercept = 1;
+    optional bool copy_X = 2;
+    optional uint32 n_jobs = 3;
+    optional bool postive = 4;
+}
+
+// Ridge kwargs with optional type.
+message LinearRidgekwargs {
+    optional bool fit_intercept = 1;
+    optional bool copy_X = 2;
+    optional google.protobuf.Any max_iter = 3;
+    optional float tol = 4;
+    optional Solver solver = 5;
+    optional bool postive = 6;
+    optional google.protobuf.Any random_state = 7;
+}
+
+// RidgeCV kwargs with optional type.
+message LinearRidgeCVkwargs {
+    optional bool fit_intercept = 1;
+    optional google.protobuf.Any scoring = 2;
+    optional google.protobuf.Any cv = 3;
+    optional google.protobuf.Any gcv_mode = 4;
+    optional bool store_cv_values = 5;
+    optional bool alpha_per_target = 6;
+}
+
+// Lasso kwargs with optional type.
+message LassoExpressionkwargs {
+    optional bool fit_intercept = 1;
+    optional google.protobuf.Any precompute = 2; 
+    optional bool copy_X = 3;
+    optional int32 max_iter = 4;
+    optional float tol = 5;
+    optional bool warm_start = 6;
+    optional bool positive = 7;
+    optional google.protobuf.Any random_state = 8;
+    optional Selection selection = 9;
+}
+
+// Lasso Lars kwargs with optional type.
+message LassoLarsLassoExpressionkwargs {
+    optional bool fit_intercept = 1;
+    optional google.protobuf.Any verbose = 2;
+    optional google.protobuf.Any normalize = 3;
+    optional string precompute = 4;
+    optional int32 max_iter = 5;
+    optional float eps = 6;
+    optional bool copy_X = 7;
+    optional bool fit_path = 8;
+    optional bool positive = 9;
+    optional float jitter = 10;
+    optional google.protobuf.Any random_state = 11;
+}
+
+// Bayesian Ridge kwargs with optional type.
+message BayesianRidgekwargs {
+    optional int32 max_iter = 1;
+    optional float tol = 2;
+    optional float alpha_1 = 3;
+    optional float alpha_2 = 4;
+    optional float lambda_1 = 5;
+    optional float lambda_2 = 6;
+    optional float alpha_init = 7;
+    optional float lambda_init = 8;
+    optional bool compute_score = 9;
+    optional bool fit_intercept = 10;
+    optional bool copy_X = 11;
+    optional bool verbose = 12;
+    optional int32 n_iter = 13;
+}
+
+// Tweedie Regressor kwargs with optional type.
+message TweedieRegressorkwargs {
+    optional float power = 1;
+    optional float alpha = 2;
+    optional bool fit_intercept = 3;
+    optional Link link = 4;
+    optional Solver solver = 5;
+    optional int32 max_iter = 6;
+    optional float tol = 7;
+    optional bool start = 8;
+    optional int32 verbose = 9;
+} 
+
+// SGD Classifier kwargs with optional type.
+message SGDClassifierkwargs {
+    optional Loss loss = 1;
+    optional Penalty penalty = 2;
+    optional float aplha = 3;
+    optional float l1_ratio = 4;
+    optional bool fit_intercept = 5;
+    optional int32 max_iter = 6;
+    optional float tol = 7;
+    optional bool shuffle = 8;
+    optional int32 verbose = 9;
+    optional float epsilon = 10;
+    optional google.protobuf.Any n_jobs = 11;
+    optional google.protobuf.Any random_state = 12;
+    optional string learning_rate = 13;
+    optional float eta0 = 14;
+    optional float power_t = 15;
+    optional bool early_stopping = 16;
+    optional float validation_fraction = 17;
+    optional int32 n_iter_no_change = 18;
+    optional google.protobuf.Any class_weight = 19;
+    optional bool warm_start = 20;
+    optional google.protobuf.Any average = 21;
+}
+
+// Linear SVC kwargs with optional type.
+message LinearSVCkwargs {
+    optional Penalty penalty = 1;
+    optional Loss loss = 2;
+    optional bool dual = 3;
+    optional float tol = 4;
+    optional float C = 5;
+    optional Multi_Class multi_class = 6;
+    optional bool fit_intercept = 7;
+    optional float intercept_scaling = 8;
+    optional google.protobuf.Any class_weight = 9; 
+    optional int32 verbose = 10;
+    optional google.protobuf.Any random_state = 11;
+    optional int64 max_iter = 12;
+}
+
+// Linear SVR kwargs with optional type.
+message LinearSVRkwargs {
+    optional Penalty penalty = 1;
+    optional Loss loss = 2;
+    optional bool dual = 3;
+    optional float tol = 4;
+    optional float C = 5;
+    optional Multi_Class multi_class = 6;
+    optional bool fit_intercept = 7;
+    optional float intercept_scaling = 8;
+    optional google.protobuf.Any class_weight = 9;
+    optional int32 verbose = 10;
+    optional google.protobuf.Any random_state = 11;
+    optional int64 max_iter = 12;
+}
+
+// SVC kwargs with optional type.
+message SVCkwargs {
+    optional Penalty penalty = 1;
+    optional Loss loss = 2;
+    optional bool dual = 3;
+    optional float tol = 4;
+    optional float C = 5;
+    optional Multi_Class multi_class = 6;
+    optional bool fit_intercept = 7;
+    optional float intercept_scaling = 8;
+    optional google.protobuf.Any class_weight = 9;
+    optional int32 verbose = 10;
+    optional google.protobuf.Any random_state = 11;
+    optional int64 max_iter = 12;
+}
+
+// Nearest Neighbors kwargs with optional type.
+message NearestNeighborskwargs {
+    optional int32 n_neighbors = 1;
+    optional float radius = 2;
+    optional Algorithm algorithm = 3;
+    optional int32 leaf_size = 4;
+    optional google.protobuf.Any metric = 5;
+    optional float p = 6;
+    optional google.protobuf.Any metric_params = 7;
+    optional google.protobuf.Any n_jobs = 8;
+}
+
+// Polynomial Features with Transform kwargs with optional type.
+message PolynomialFeaturesFitTransformkwargs{
+    optional Penalty penalty = 1;
+    optional float alpha = 2;
+    optional float l1_ratio = 3;
+    optional bool fit_intercept = 4;
+    optional int32 max_iter = 5;
+    optional google.protobuf.Any tol = 6;
+    optional bool shuffle = 7;
+    optional int32 verbose = 8;
+    optional float eta0 = 9;
+    optional google.protobuf.Any n_jobs = 10;
+    optional google.protobuf.Any random_state = 11;
+    optional bool early_stopping = 12;
+    optional float validation_fraction = 13;
+    optional int32 n_iter_no_change = 14;
+    optional google.protobuf.Any class_weight = 15;
+    optional bool warm_start = 16;
+}
+
+// Elastic Net kwargs with optional type.
+message ElasticNetkwargs {
+    optional float l1_ratio = 1;
+    optional bool fit_intercept = 2;
+    optional float precompute = 3;
+    optional int32 max_iter = 4;
+    optional bool copy_X = 5;
+    optional float tol = 6;
+    optional bool warm_start = 7;
+    optional bool positive = 8;
+    optional int32 random_state = 9;
+    optional string selection = 10;
+}

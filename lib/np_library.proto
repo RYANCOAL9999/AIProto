@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+import "google/protobuf/any.proto";
+
+// NS Array kwargs with speical type.
+message NDArray{
+    repeated int32 shape = 1;
+    float dtype = 2;
+    oneof instrument {
+        google.protobuf.Any buffer = 3;
+        google.protobuf.Any offset = 4;
+        google.protobuf.Any strides = 5;
+        google.protobuf.Any order = 6;
+    }
+}

@@ -1,0 +1,69 @@
+syntax = "proto3";
+
+import "lib/np_library.proto";
+import "lib/enum_expression.proto";
+import "lib/kwargs_expression.proto";
+import "google/protobuf/any.proto";
+
+// The machine Learning service definition with preprocessing function.
+service PolynomialService {
+
+	// Send a Polynomial Features
+	rpc PolynomialFeaturesEvent(PolynomialFeaturesFitTransformRequest) returns (PolynomialFeaturesFitTransformReply) {}
+
+	// Send a Polynomial Features with Transform
+	rpc PolynomialFeaturesFitTransformEvent(PolynomialFeaturesFitTransformRequest) returns (PolynomialFeaturesFitTransformReply) {}
+
+}
+
+// The request message containing the Polynomial Features's Data.
+message PolynomialFeaturesRequest {
+	google.protobuf.Any x_drop_data = 1;
+	google.protobuf.Any size = 2;
+    google.protobuf.Any random = 3;
+	string key = 4;
+	optional google.protobuf.Any y_drop_data = 5;
+	optional google.protobuf.Any degree = 6;
+	oneof instrument {
+		bool interaction_only = 7;
+    	bool include_bias = 8;
+    	Order order = 9;
+		google.protobuf.Any kwargs = 10;
+	}
+}
+
+// The response message containing the Polynomial Features.
+message PolynomialFeaturesReply {
+	optional google.protobuf.Any matrix = 1;
+}
+
+// The request message containing the Polynomial Features with Transform's Data.
+message PolynomialFeaturesFitTransformRequest {
+	google.protobuf.Any x_drop_data = 1;
+	google.protobuf.Any size = 2;
+    google.protobuf.Any random = 3;
+	string key = 4;
+	optional google.protobuf.Any y_drop_data = 5;
+	optional google.protobuf.Any sample_weight = 6;
+	optional int32 degree = 7;
+	oneof instrument {
+		bool interaction_only = 8;
+    	bool include_bias = 9;
+    	Order order = 10;
+    	google.protobuf.Any coef_init = 11;
+    	google.protobuf.Any intercept_init = 12;
+		PolynomialFeaturesFitTransformkwargs kwargs = 13;
+	}
+}
+
+// The response message containing the Polynomial Features with Transform.
+message PolynomialFeaturesFitTransformReply {
+	optional int32 t_ = 1;
+	optional int32 n_iter_ = 2;
+	optional NDArray feature_names_in_ = 3;
+	optional int32 n_features_in_ = 4;
+	optional google.protobuf.Any loss_function_ = 5;
+	optional NDArray intercept_ = 6;
+	optional NDArray coef_ = 7;
+	optional NDArray classes_ = 8;
+}
