@@ -1,4 +1,6 @@
 syntax = "proto3";
+package AIProto;
+option go_package = "./";
 
 // Penalty kwargs with enum type.
 enum Penalty {

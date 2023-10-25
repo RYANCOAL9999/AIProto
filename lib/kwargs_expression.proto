@@ -1,7 +1,9 @@
 syntax = "proto3";
+package AIProto;
+option go_package = "./";
 
-import "lib/enum_expression.proto";
-import "lib/np_library.proto";
+import "AIProto/lib/enum_expression.proto";
+import "AIProto/lib/np_library.proto";
 import "google/protobuf/any.proto";
 
 // Linear Regression kwargs with optional type.

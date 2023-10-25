@@ -1,4 +1,6 @@
 syntax = "proto3";
+package AIProto;
+option go_package = "./";
 
 // The machine Learning service definition with file function.
 service FileService {
