@@ -10,18 +10,18 @@ import "google/protobuf/any.proto";
 service SVMService {
 
     // Send a Linear SVC
-    rpc LinearSVCEvent(LinearSVCRequest) returns (LinearSVCReply) {}
+    rpc LinearSVCEvent(LinearRequest) returns (LinearReply) {}
 
     // Send a Linear SVR
-    rpc LinearSVREvent (LinearSVRRequest) returns (LinearSVRReply) {}
+    rpc LinearSVREvent (LinearRequest) returns (LinearReply) {}
 
     // Send a SVC
     rpc SVCEvent (SVCRequest) returns (SVCReply) {}
 
 }
 
-// Linear SVC kwargs with optional type.
-message LinearSVCkwargs {
+// Linear kwargs with optional type.
+message Linearkwargs {
     optional Penalty penalty = 1;
     optional Loss loss = 2;
     optional bool dual = 3;
@@ -31,22 +31,6 @@ message LinearSVCkwargs {
     optional bool fit_intercept = 7;
     optional float intercept_scaling = 8;
     optional google.protobuf.Any class_weight = 9; 
-    optional int32 verbose = 10;
-    optional google.protobuf.Any random_state = 11;
-    optional int64 max_iter = 12;
-}
-
-// Linear SVR kwargs with optional type.
-message LinearSVRkwargs {
-    optional Penalty penalty = 1;
-    optional Loss loss = 2;
-    optional bool dual = 3;
-    optional float tol = 4;
-    optional float C = 5;
-    optional Multi_Class multi_class = 6;
-    optional bool fit_intercept = 7;
-    optional float intercept_scaling = 8;
-    optional google.protobuf.Any class_weight = 9;
     optional int32 verbose = 10;
     optional google.protobuf.Any random_state = 11;
     optional int64 max_iter = 12;
@@ -68,45 +52,25 @@ message SVCkwargs {
     optional int64 max_iter = 12;
 }
 
-// The request message containing the Linear SVC's Data.
-message LinearSVCRequest {
+// The request message containing the Linear 's Data.
+message LinearRequest {
     google.protobuf.Any x_drop_data = 1;
     google.protobuf.Any y_drop_data = 2;
     google.protobuf.Any size = 3;
     google.protobuf.Any random = 4;
     string key = 5;
     optional google.protobuf.Any sample_weight = 6;
-    LinearSVCkwargs kwargs = 7;
+    Linearkwargs kwargs = 7;
 }
 
-// The response message containing the Linear SVC.
-message LinearSVCReply {
+// The response message containing the Linear.
+message LinearReply {
     optional int32 n_iter_ = 1;
     optional NDArray feature_names_in_ = 2;
     optional int32 n_features_in_ = 3;
     optional NDArray classes_ = 4;
     optional google.protobuf.Any intercept_ = 5;
     optional NDArray coef_ = 6;
-}
-
-// The request message containing the Linear SVR's Data.
-message LinearSVRRequest {
-    google.protobuf.Any x_drop_data = 1;
-    google.protobuf.Any y_drop_data = 2;
-    google.protobuf.Any size = 3;
-    google.protobuf.Any random = 4;
-    string key = 5;
-    optional google.protobuf.Any sample_weight = 6;
-    LinearSVRkwargs kwargs = 7;
-}
-
-// The response message containing the Linear SVR's Data.
-message LinearSVRReply {
-    optional int32 n_iter_ = 1;
-    optional NDArray feature_names_in_ = 2;
-    optional int32 n_features_in_ = 3;
-    optional NDArray intercept_ = 4;
-    optional NDArray coef_ = 5;
 }
 
 // The request message containing the SVC's Data.
