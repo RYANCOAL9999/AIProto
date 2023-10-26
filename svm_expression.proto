@@ -2,8 +2,8 @@ syntax = "proto3";
 package AIProto;
 option go_package = "./";
 
-import "AIProto/lib/np_library.proto";
-import "AIProto/lib/kwargs_expression.proto";
+import "lib/np_library.proto";
+import "lib/enum_expression.proto";
 import "google/protobuf/any.proto";
 
 // The machine Learning service definition with SVM function.
@@ -18,6 +18,54 @@ service SVMService {
     // Send a SVC
     rpc SVCEvent (SVCRequest) returns (SVCReply) {}
 
+}
+
+// Linear SVC kwargs with optional type.
+message LinearSVCkwargs {
+    optional Penalty penalty = 1;
+    optional Loss loss = 2;
+    optional bool dual = 3;
+    optional float tol = 4;
+    optional float C = 5;
+    optional Multi_Class multi_class = 6;
+    optional bool fit_intercept = 7;
+    optional float intercept_scaling = 8;
+    optional google.protobuf.Any class_weight = 9; 
+    optional int32 verbose = 10;
+    optional google.protobuf.Any random_state = 11;
+    optional int64 max_iter = 12;
+}
+
+// Linear SVR kwargs with optional type.
+message LinearSVRkwargs {
+    optional Penalty penalty = 1;
+    optional Loss loss = 2;
+    optional bool dual = 3;
+    optional float tol = 4;
+    optional float C = 5;
+    optional Multi_Class multi_class = 6;
+    optional bool fit_intercept = 7;
+    optional float intercept_scaling = 8;
+    optional google.protobuf.Any class_weight = 9;
+    optional int32 verbose = 10;
+    optional google.protobuf.Any random_state = 11;
+    optional int64 max_iter = 12;
+}
+
+// SVC kwargs with optional type.
+message SVCkwargs {
+    optional Penalty penalty = 1;
+    optional Loss loss = 2;
+    optional bool dual = 3;
+    optional float tol = 4;
+    optional float C = 5;
+    optional Multi_Class multi_class = 6;
+    optional bool fit_intercept = 7;
+    optional float intercept_scaling = 8;
+    optional google.protobuf.Any class_weight = 9;
+    optional int32 verbose = 10;
+    optional google.protobuf.Any random_state = 11;
+    optional int64 max_iter = 12;
 }
 
 // The request message containing the Linear SVC's Data.

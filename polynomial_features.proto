@@ -2,9 +2,8 @@ syntax = "proto3";
 package AIProto;
 option go_package = "./";
 
-import "AIProto/lib/np_library.proto";
-import "AIProto/lib/enum_expression.proto";
-import "AIProto/lib/kwargs_expression.proto";
+import "lib/np_library.proto";
+import "lib/enum_expression.proto";
 import "google/protobuf/any.proto";
 
 // The machine Learning service definition with preprocessing function.
@@ -16,6 +15,26 @@ service PolynomialService {
 	// Send a Polynomial Features with Transform
 	rpc PolynomialFeaturesFitTransformEvent(PolynomialFeaturesFitTransformRequest) returns (PolynomialFeaturesFitTransformReply) {}
 
+}
+
+// Polynomial Features with Transform kwargs with optional type.
+message PolynomialFeaturesFitTransformkwargs{
+    optional Penalty penalty = 1;
+    optional float alpha = 2;
+    optional float l1_ratio = 3;
+    optional bool fit_intercept = 4;
+    optional int32 max_iter = 5;
+    optional google.protobuf.Any tol = 6;
+    optional bool shuffle = 7;
+    optional int32 verbose = 8;
+    optional float eta0 = 9;
+    optional google.protobuf.Any n_jobs = 10;
+    optional google.protobuf.Any random_state = 11;
+    optional bool early_stopping = 12;
+    optional float validation_fraction = 13;
+    optional int32 n_iter_no_change = 14;
+    optional google.protobuf.Any class_weight = 15;
+    optional bool warm_start = 16;
 }
 
 // The request message containing the Polynomial Features's Data.

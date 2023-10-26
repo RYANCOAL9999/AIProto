@@ -2,8 +2,8 @@ syntax = "proto3";
 package AIProto;
 option go_package = "./";
 
-import "AIProto/lib/np_library.proto";
-import "AIProto/lib/kwargs_expression.proto";
+import "lib/np_library.proto";
+import "lib/enum_expression.proto";
 import "google/protobuf/any.proto";
 
 // The machine Learning service definition with Neighbors function.
@@ -18,6 +18,18 @@ service NeighborsService {
 	// Send a Nearest Centroid
 	rpc NearestCentroidEvent(NearestCentroidRequest) returns (NearestCentroidReply) {}
 
+}
+
+// Nearest Neighbors kwargs with optional type.
+message NearestNeighborskwargs {
+    optional int32 n_neighbors = 1;
+    optional float radius = 2;
+    optional Algorithm algorithm = 3;
+    optional int32 leaf_size = 4;
+    optional google.protobuf.Any metric = 5;
+    optional float p = 6;
+    optional google.protobuf.Any metric_params = 7;
+    optional google.protobuf.Any n_jobs = 8;
 }
 
 // The request message containing the Nearest Neighbors's Data.
