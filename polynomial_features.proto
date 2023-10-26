@@ -10,7 +10,7 @@ import "google/protobuf/any.proto";
 service PolynomialService {
 
 	// Send a Polynomial Features
-	rpc PolynomialFeaturesEvent(PolynomialFeaturesFitTransformRequest) returns (PolynomialFeaturesFitTransformReply) {}
+	rpc PolynomialFeaturesEvent(PolynomialFeaturesRequest) returns (PolynomialFeaturesReply) {}
 
 	// Send a Polynomial Features with Transform
 	rpc PolynomialFeaturesFitTransformEvent(PolynomialFeaturesFitTransformRequest) returns (PolynomialFeaturesFitTransformReply) {}
