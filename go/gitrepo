@@ -1,0 +1,10 @@
+; DO NOT EDIT (unless you know what you are doing)
+;
+; This subdirectory is a git "subrepo", and this file is maintained by the
+; git-subrepo command. See https://github.com/git-commands/git-subrepo#readme
+;
+[subrepo]
+	remote = http://github.com/RYANCOAL9999/AIProto
+	branch = main
+	method = merge
+	cmdver = 0.0.1
