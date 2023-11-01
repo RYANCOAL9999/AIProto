@@ -129,7 +129,7 @@ message TweedieRegressorkwargs {
 message SGDClassifierkwargs {
     optional Loss loss = 1;
     optional Penalty penalty = 2;
-    optional float aplha = 3;
+    optional float alpha = 3;
     optional float l1_ratio = 4;
     optional bool fit_intercept = 5;
     optional int32 max_iter = 6;
